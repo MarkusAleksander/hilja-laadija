@@ -6,7 +6,7 @@ Version 1.0.0
 var hlOptions = hlOptions || {};
 var hiljaLaadija = (function hiljaLaadija(options) {
     var _data = {
-        placeholderTarget: '#lazyloaderPlaceholder',
+        placeholderTarget: options.hasOwnProperty('placeholderTarget') ? options.placeholderTarget : '#lazyloaderPlaceholder',
         placeholderTargetEl: null,
         serverLocation: null,
         imageArr: null,

@@ -23,6 +23,17 @@ In HTML before any other images:
 <script type="text/javascript" src="/path-to-the-lazy-loader-script.js"></script>
 ```
 
+With an Options object:
+```
+<script>
+    window.hlOptions = {
+        offset: 100.
+        negOffset: 100,
+        placeholderTarget: '#IDOfInitialPlaceholderImage'
+    }
+</script>
+```
+
 On HTML tags to be lazy loaded:
 ```
 <img data-lazy-src="image_to_be_lazyLoaded.jpg" src="/path-to-a-placeholder-image.jpg" />
