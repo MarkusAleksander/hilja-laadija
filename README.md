@@ -14,3 +14,29 @@ This library works by loading a placeholder image, the server location of which 
 ## TODOs
 
 - Add customisability, i.e. offset distance
+
+## Usage on dynamic server sites
+
+In HTML before any other images:
+```
+<img id="lazyloaderPlaceholder" src="/path-to-a-placeholder-image.jpg" style="display:none;" />
+<script type="text/javascript" src="/path-to-the-lazy-loader-script.js"></script>
+```
+
+On HTML tags to be lazy loaded:
+```
+<img data-lazy-src="image_to_be_lazyLoaded.jpg" src="/path-to-a-placeholder-image.jpg" />
+<!-- or as a background image -->
+<div data-lazy-src="image_to_be_lazyLoaded.jpg"></div>
+```
+
+Then in a CSS file, a list of all the images to be lazy loaded:
+```
+#DoNotUseThisID {
+    background-image:
+        url('/path-to/image_one.jpg'),
+        url('/path-to/image_two.png'),
+        url('/path-to/image/image_three.jpg'),
+        ...ad infinitum;
+}
+```
