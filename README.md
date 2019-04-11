@@ -51,3 +51,12 @@ Then in a CSS file, a list of all the images to be lazy loaded:
         ...ad infinitum;
 }
 ```
+
+## Options
+
+Option | Default | Desc
+----|----|----
+offset | 500 | Distance below window to initialise image loading
+negOffset | -500 | Distance above window to initialise image loaded (if page has loaded further down the page)
+placeholderTarget | '#lazyloaderPlaceholder' | target ID of the initial image placeholder
+debugMode | false | Output some extra error info to the console

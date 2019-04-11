@@ -13,11 +13,12 @@ var hiljaLaadija = (function hiljaLaadija(options) {
         offset: options.hasOwnProperty('offset') ? options.offset : 500,
         negOffset: options.hasOwnProperty('negOffset') ? options.negOffset : -500,
         scrolling: false,
-        high_bound: window.innerHeight
+        high_bound: window.innerHeight,
+        debugMode: options.hasOwnProperty('debugMode') ? options.debugMode : false
     };
     function _test(test, message) {
         if (test) {
-            console.log(message);
+            _debugConsole(message);
             return true;
         }
         return false;
@@ -39,6 +40,11 @@ var hiljaLaadija = (function hiljaLaadija(options) {
                 }
                 _data.imageArr[i].classList.add('lazy-loaded');
             }
+        }
+    }
+    function _debugConsole (str) {
+        if(_data.debugMode) {
+            console.log(str);
         }
     }
     function _run() {
@@ -63,7 +69,7 @@ var hiljaLaadija = (function hiljaLaadija(options) {
     }
     function _init() {
         // * Initialise variables before running
-        console.log('Beginning lazy load...');
+        _debugConsole('Beginning lazy load...');
         _data.placeholderTargetEl = document.querySelector(_data.placeholderTarget);
         // * Requires placeholder image
         if (_test(!_data.placeholderTargetEl, 'Lazy Load Placeholder not found!')) {
