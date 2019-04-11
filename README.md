@@ -1,4 +1,4 @@
-# hilja-laadija
+# Hilja Laadija
 Lazy Loader for Dynamic Servers
 
 This lazy loader was developed out of a need to introduce Lazy Loading to websites that used a FatWire Content Management System. Because of this system, all paths in HTML were required to be relative URLs and each content page would go through a number of different locations from initial build, to QA, to live. Images that were uploaded would only advance through the system when referenced in the src attribute of an img tag or as a background image in CSS. This meant Lazy Loading using other available libraries was not possible.
