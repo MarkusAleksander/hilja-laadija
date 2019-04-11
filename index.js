@@ -3,14 +3,15 @@ Lazy Loader Module (hilja laadija - Late Loader)
 Developed by Mark Holden
 Version 1.0.0
 */
-var hiljaLaadija = (function hiljaLaadija() {
+var hlOptions = hlOptions || {};
+var hiljaLaadija = (function hiljaLaadija(options) {
     var _data = {
         placeholderTarget: '#lazyloaderPlaceholder',
         placeholderTargetEl: null,
         serverLocation: null,
         imageArr: null,
-        offset: 500,
-        negOffset: -500,
+        offset: options.hasOwnProperty('offset') ? options.offset : 500,
+        negOffset: options.hasOwnProperty('negOffset') ? options.negOffset : -500,
         scrolling: false,
         high_bound: window.innerHeight
     };
@@ -76,7 +77,7 @@ var hiljaLaadija = (function hiljaLaadija() {
         init: _init,
         run: _run
     };
-})();
+})(hlOptions);
 hiljaLaadija.init();
 (function initAction() {
     function ready(fn) { if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
