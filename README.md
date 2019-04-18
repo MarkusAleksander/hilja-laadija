@@ -13,7 +13,7 @@ This library works by loading a placeholder image, the server location of which 
 
 ## TODOs
 
-- Add customisability, i.e. offset distance
+- None currently
 
 ## Usage on dynamic server sites
 

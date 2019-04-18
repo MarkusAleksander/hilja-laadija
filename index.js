@@ -1,7 +1,7 @@
 /*
 Lazy Loader Module (hilja laadija - Late Loader)
 Developed by Mark Holden
-Version 1.0.0
+Version 1.1.0
 */
 var hlOptions = hlOptions || {};
 var hiljaLaadija = (function hiljaLaadija(options) {
