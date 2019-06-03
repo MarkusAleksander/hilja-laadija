@@ -13,7 +13,8 @@ This library works by loading a placeholder image, the server location of which 
 
 ## TODOs
 
-- None currently
+- Doesn't work with local / relative to index file paths
+- Improve passing of object instead of adding as a global
 
 ## Usage on dynamic server sites
 
