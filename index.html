@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <img id="lazyloaderPlaceholder" src="/path-to-a-placeholder-image.jpg" style="display:none;" />
+    <script type="text/javascript" src="index.js"></script>
+    <script>
+        hiljaLaadija.init({
+            offset: 500,
+            negOffset: -500,
+            debugMode: true,
+            placeholderTarget: '#lazyloaderPlaceholder',
+            relativeFileRoot: '/repo'
+        });
+    </script>
+
+    <img src="/path-to-a-placeholder-image.jpg" data-lazy-src="imgs/test.jpg" />
+</body>
+</html>

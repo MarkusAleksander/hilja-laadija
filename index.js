@@ -3,21 +3,21 @@ Lazy Loader Module (hilja laadija - Late Loader)
 Developed by Mark Holden
 Version 1.1.0
 */
-var hlOptions = hlOptions || {};
-var hiljaLaadija = (function hiljaLaadija(options) {
+var hiljaLaadija = (function hiljaLaadija() {
     var _data = {
-        placeholderTarget: options.hasOwnProperty('placeholderTarget') ? options.placeholderTarget : '#lazyloaderPlaceholder',
+        placeholderTarget: '#lazyloaderPlaceholder',
         placeholderTargetEl: null,
         serverLocation: null,
         imageArr: null,
-        offset: options.hasOwnProperty('offset') ? options.offset : 500,
-        negOffset: options.hasOwnProperty('negOffset') ? options.negOffset : -500,
+        offset: 500,
+        negOffset: -500,
         scrolling: false,
         high_bound: window.innerHeight,
-        debugMode: options.hasOwnProperty('debugMode') ? options.debugMode : false
+        debugMode: false,
+        relativeFileRoot: '/repo'
     };
     function _test(test, message) {
-        if (test) {
+        if (test == null && test == undefined) {
             _debugConsole(message);
             return true;
         }
@@ -67,7 +67,13 @@ var hiljaLaadija = (function hiljaLaadija(options) {
             }
         }, 150);
     }
-    function _init() {
+    function _init(options) {
+        if(options && typeof options == 'object' && options.constructor === Object) {
+            Object.keys(options).forEach(function (prop) {
+                _data[prop] = options[prop];
+            });
+        }
+
         // * Initialise variables before running
         _debugConsole('Beginning lazy load...');
         _data.placeholderTargetEl = document.querySelector(_data.placeholderTarget);
@@ -77,14 +83,15 @@ var hiljaLaadija = (function hiljaLaadija(options) {
         }
         // * Get path
         var path = _data.placeholderTargetEl.getAttribute('src');
-        _data.serverLocation = path.slice(0, path.indexOf('/repo'));
+        _data.serverLocation = path.indexOf(_data.relativeFileRoot) > -1
+            ? path.slice(0, path.indexOf(_data.relativeFileRoot))
+            : '';
     }
     return {
         init: _init,
         run: _run
     };
-})(hlOptions);
-hiljaLaadija.init();
+})();
 (function initAction() {
     function ready(fn) { if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
         fn();
