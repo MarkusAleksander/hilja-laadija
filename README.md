@@ -10,6 +10,7 @@ This library works by loading a placeholder image, the server location of which 
 - Works on all images
 - Applies images as a background to non-image tags
 - Works automatically with an image and script tag dropped in
+- Can be run initialised with an options object
 
 ## TODOs
 
@@ -18,32 +19,37 @@ This library works by loading a placeholder image, the server location of which 
 
 ## Usage on dynamic server sites
 
-In HTML before any other images:
-```
+In HTML before any other images / content:
+```html
 <img id="lazyloaderPlaceholder" src="/path-to-a-placeholder-image.jpg" style="display:none;" />
 <script type="text/javascript" src="/path-to-the-lazy-loader-script.js"></script>
+<script>
+    hiljaLaadija.init();
+</script>
 ```
 
 With an Options object:
-```
+```js
 <script>
-    window.hlOptions = {
-        offset: 100.
-        negOffset: 100,
-        placeholderTarget: '#IDOfInitialPlaceholderImage'
-    }
+    hiljaLaadija.init({
+        offset: 500,
+        negOffset: -500,
+        debugMode: true,
+        placeholderTarget: '#lazyloaderPlaceholder',
+        relativeFileRoot: '/repo'
+    });
 </script>
 ```
 
 On HTML tags to be lazy loaded:
-```
+```html
 <img data-lazy-src="image_to_be_lazyLoaded.jpg" src="/path-to-a-placeholder-image.jpg" />
 <!-- or as a background image -->
 <div data-lazy-src="image_to_be_lazyLoaded.jpg"></div>
 ```
 
 Then in a CSS file, a list of all the images to be lazy loaded:
-```
+```css
 #DoNotUseThisID {
     background-image:
         url('/path-to/image_one.jpg'),
@@ -61,3 +67,4 @@ offset | 500 | Distance below window to initialise image loading
 negOffset | -500 | Distance above window to initialise image loaded (if page has loaded further down the page)
 placeholderTarget | '#lazyloaderPlaceholder' | target ID of the initial image placeholder
 debugMode | false | Output some extra error info to the console
+relativeFileRoot | '/repo' | relative file root for the fatwire system, before which the server is prepended

@@ -14,7 +14,8 @@ var hiljaLaadija = (function hiljaLaadija() {
         scrolling: false,
         high_bound: window.innerHeight,
         debugMode: false,
-        relativeFileRoot: '/repo'
+        relativeFileRoot: '/repo',
+        initialised: false
     };
     function _test(test, message) {
         if (test == null && test == undefined) {
@@ -47,7 +48,11 @@ var hiljaLaadija = (function hiljaLaadija() {
             console.log(str);
         }
     }
+    function _isInitialised () {
+        return _data.initialised;
+    }
     function _run() {
+        if(!_isInitialised) return;
         // * Get lazy loadable images when document has loaded
         _data.imageArr = document.querySelectorAll('[data-lazy-src]:not(.lazy-loaded)');
         if (_test(_data.imageArr.length == 0, 'No lazy loadable images found')) {
@@ -86,10 +91,13 @@ var hiljaLaadija = (function hiljaLaadija() {
         _data.serverLocation = path.indexOf(_data.relativeFileRoot) > -1
             ? path.slice(0, path.indexOf(_data.relativeFileRoot))
             : '';
+
+        _data.initialised = true;
     }
     return {
         init: _init,
-        run: _run
+        run: _run,
+        isInitialised: _isInitialised
     };
 })();
 (function initAction() {
@@ -101,6 +109,6 @@ var hiljaLaadija = (function hiljaLaadija() {
     } }
     ready(function run() {
         // Now do stuff...
-        hiljaLaadija.run();
+        hiljaLaadija.isInitialised() ? hiljaLaadija.run() : hiljaLaadija.init(), hiljaLaadija.run();
     });
 })();
