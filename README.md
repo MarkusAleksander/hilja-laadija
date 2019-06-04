@@ -15,7 +15,6 @@ This library works by loading a placeholder image, the server location of which 
 ## TODOs
 
 - Doesn't work with local / relative to index file paths
-- Improve passing of object instead of adding as a global
 
 ## Usage on dynamic server sites
 
@@ -36,7 +35,7 @@ With an Options object:
         negOffset: -500,
         debugMode: true,
         placeholderTarget: '#lazyloaderPlaceholder',
-        relativeFileRoot: '/repo'
+        relativeSystemFileRoot: '/repo',
     });
 </script>
 ```
@@ -67,4 +66,5 @@ offset | 500 | Distance below window to initialise image loading
 negOffset | -500 | Distance above window to initialise image loaded (if page has loaded further down the page)
 placeholderTarget | '#lazyloaderPlaceholder' | target ID of the initial image placeholder
 debugMode | false | Output some extra error info to the console
-relativeFileRoot | '/repo' | relative file root for the fatwire system, before which the server is prepended
+relativeSystemFileRoot | '/repo' | relative file root for the fatwire system, before which the server is prepended
+relativePathsToHTML | false | are image files relative to the HTML file? Set to true if working locally to the HTML

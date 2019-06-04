@@ -14,8 +14,9 @@ var hiljaLaadija = (function hiljaLaadija() {
         scrolling: false,
         high_bound: window.innerHeight,
         debugMode: false,
-        relativeFileRoot: '/repo',
-        initialised: false
+        relativeSystemFileRoot: '/repo',
+        initialised: false,
+        relativePathsToHTML: false
     };
     function _test(test, message) {
         if (test == null && test == undefined) {
@@ -31,7 +32,7 @@ var hiljaLaadija = (function hiljaLaadija() {
             if ((bounds.top < _data.high_bound) && ((bounds.top + bounds.height) > _data.negOffset)) {
                 var imgSrc = _data.imageArr[i].getAttribute('data-lazy-src');
                 if (imgSrc.indexOf(_data.serverLocation) == -1) {
-                    imgSrc = _data.serverLocation + imgSrc;
+                    imgSrc = _data.relativePathsToHTML ? imgSrc : _data.serverLocation + imgSrc;
                 }
                 if (_data.imageArr[i].tagName == "IMG") {
                     _data.imageArr[i].setAttribute('src', imgSrc);
@@ -88,8 +89,8 @@ var hiljaLaadija = (function hiljaLaadija() {
         }
         // * Get path
         var path = _data.placeholderTargetEl.getAttribute('src');
-        _data.serverLocation = path.indexOf(_data.relativeFileRoot) > -1
-            ? path.slice(0, path.indexOf(_data.relativeFileRoot))
+        _data.serverLocation = path.indexOf(_data.relativeSystemFileRoot) > -1 && !_data.relativePathsToHTML
+            ? path.slice(0, path.indexOf(_data.relativeSystemFileRoot))
             : '';
 
         _data.initialised = true;
