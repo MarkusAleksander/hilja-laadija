@@ -53,7 +53,7 @@ var hiljaLaadija = (function hiljaLaadija() {
         return _data.initialised;
     }
     function _run() {
-        if(!_isInitialised) return;
+        if(!_isInitialised()) return;
         // * Get lazy loadable images when document has loaded
         _data.imageArr = document.querySelectorAll('[data-lazy-src]:not(.lazy-loaded)');
         if (_test(_data.imageArr.length == 0, 'No lazy loadable images found')) {
